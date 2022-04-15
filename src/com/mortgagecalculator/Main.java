@@ -14,23 +14,49 @@ public class Main {
         // init scanner
         Scanner scanner = new Scanner(System.in);
 
+        // set up default values
+        int principal;
+        float annualInterestRate;
+        int loanPeriod;
+
         // get principal
-        System.out.print("Principal: ");
-        int principal = scanner.nextInt();
+        while (true) {
+            System.out.print("Principal: ");
+            principal = scanner.nextInt();
+            if (principal >= 1000 && principal <= 1_000_000) {
+                break;
+            }
+            System.out.println("Please enter a value between 1,000 and 1,000,000");
+        }
+
 
         // get annual interest rate
-        System.out.print("Annual Interest Rate: ");
-        float annualInterestRate = scanner.nextFloat();
+        while (true) {
+            System.out.print("Annual Interest Rate: ");
+            annualInterestRate = scanner.nextFloat();
+            if (annualInterestRate >= 1 && annualInterestRate <= 30) {
+                break;
+            }
+            System.out.println("Please enter an annual interest rate between 1 and 30");
+        }
+
 
         // get loan period in years
-        System.out.print("Period (Years): ");
-        int loanPeriod = scanner.nextInt();
+        while (true) {
+            System.out.print("Period (Years): ");
+            loanPeriod = scanner.nextInt();
+            if (loanPeriod >= 1 && loanPeriod <= 30) {
+                break;
+            }
+            System.out.println("Please enter a loan period between 1 and 30 years");
+        }
+
 
         // calculate monthly interest rate
         float monthlyInterestRate = (annualInterestRate / PERCENT) / MONTHS_IN_YEAR;
 
         // calculate total number of payments
-        int numberOfPayments = loanPeriod * 12;
+        int numberOfPayments = loanPeriod * MONTHS_IN_YEAR;
 
         // mortgage calculation:
         double monthlyPayment = principal *
