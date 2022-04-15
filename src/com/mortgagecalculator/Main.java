@@ -8,6 +8,9 @@ public class Main {
     // code along for Mosh Hamedani's Learn Java course
     // https://www.youtube.com/watch?v=eIrMbAQSU34
     public static void main(String[] args) {
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
+
         // init scanner
         Scanner scanner = new Scanner(System.in);
 
@@ -24,7 +27,7 @@ public class Main {
         int loanPeriod = scanner.nextInt();
 
         // calculate monthly interest rate
-        float monthlyInterestRate = (annualInterestRate / 100) / 12;
+        float monthlyInterestRate = (annualInterestRate / PERCENT) / MONTHS_IN_YEAR;
 
         // calculate total number of payments
         int numberOfPayments = loanPeriod * 12;
