@@ -19,7 +19,7 @@ public class Main {
         // set up default values
         int principal;
         float annualInterestRate;
-        int loanPeriod;
+        byte loanPeriod;
 
         // get principal
         while (true) {
@@ -46,7 +46,7 @@ public class Main {
         // get loan period in years
         while (true) {
             System.out.print("Period (Years): ");
-            loanPeriod = scanner.nextInt();
+            loanPeriod = scanner.nextByte();
             if (loanPeriod >= 1 && loanPeriod <= 30) {
                 break;
             }
@@ -60,7 +60,7 @@ public class Main {
         System.out.print(NumberFormat.getCurrencyInstance().format(monthlyPayment));
     }
 
-    public static double calculateMonthlyMortgagePayment(int principal, float annualInterestRate, int loanPeriod ) {
+    public static double calculateMonthlyMortgagePayment(int principal, float annualInterestRate, byte loanPeriod ) {
         // calculate monthly interest rate
         float monthlyInterestRate = (annualInterestRate / PERCENT) / MONTHS_IN_YEAR;
 
