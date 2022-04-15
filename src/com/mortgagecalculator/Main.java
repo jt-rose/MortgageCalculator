@@ -4,9 +4,6 @@ import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
-    final public static byte MONTHS_IN_YEAR = 12;
-    final public static byte PERCENT = 100;
-
     // code along for Mosh Hamedani's Learn Java course
     // https://www.youtube.com/watch?v=eIrMbAQSU34
     public static void main(String[] args) {
@@ -61,12 +58,16 @@ public class Main {
     }
 
     public static double calculateMonthlyMortgagePayment(int principal, float annualInterestRate, byte loanPeriod ) {
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
+
         // calculate monthly interest rate
         float monthlyInterestRate = (annualInterestRate / PERCENT) / MONTHS_IN_YEAR;
 
         // calculate total number of payments
         int numberOfPayments = loanPeriod * MONTHS_IN_YEAR;
 
+        // calculate monthly mortgage
         return principal *
                 (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate), numberOfPayments)))
                 / ((Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1));
