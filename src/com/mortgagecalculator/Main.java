@@ -1,15 +1,39 @@
 package com.mortgagecalculator;
 
+import java.util.Scanner;
+
 public class Main {
 
     // code along for Mosh Hamedani's Learn Java course
     // https://www.youtube.com/watch?v=eIrMbAQSU34
     public static void main(String[] args) {
-	byte age = 30;
-    long viewsCount = 3_999_999_999L;
-    float price = 10.99F;
-    char letter = 'A';
-    boolean isEligible = false;
-    System.out.println("Hello Mortgage Calculator");
+        // init scanner
+        Scanner scanner = new Scanner(System.in);
+
+        // get principal
+        System.out.print("Principal: ");
+        int principal = scanner.nextInt();
+
+        // get annual interest rate
+        System.out.print("Annual Interest Rate: ");
+        float annualInterestRate = scanner.nextFloat();
+
+        // get loan period in years
+        System.out.print("Period (Years): ");
+        int loanPeriod = scanner.nextInt();
+
+        // calculate monthly interest rate
+        float monthlyInterestRate = (annualInterestRate / 100) / 12;
+
+        // calculate total number of payments
+        int numberOfPayments = loanPeriod * 12;
+
+        // mortgage calculation:
+        double monthlyPayment = principal *
+                (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate), numberOfPayments)))
+                        / ((Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1));
+
+        System.out.print("Monthly Mortgage Payment: ");
+        System.out.print(monthlyPayment);
     }
 }
