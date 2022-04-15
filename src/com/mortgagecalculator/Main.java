@@ -4,12 +4,14 @@ import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
+    final public static byte MONTHS_IN_YEAR = 12;
+    final public static byte PERCENT = 100;
 
     // code along for Mosh Hamedani's Learn Java course
     // https://www.youtube.com/watch?v=eIrMbAQSU34
     public static void main(String[] args) {
-        final byte MONTHS_IN_YEAR = 12;
-        final byte PERCENT = 100;
+
+
 
         // init scanner
         Scanner scanner = new Scanner(System.in);
@@ -51,19 +53,22 @@ public class Main {
             System.out.println("Please enter a loan period between 1 and 30 years");
         }
 
+        // mortgage calculation:
+        double monthlyPayment = calculateMonthlyMortgagePayment(principal, annualInterestRate, loanPeriod);
 
+        System.out.print("Monthly Mortgage Payment: ");
+        System.out.print(NumberFormat.getCurrencyInstance().format(monthlyPayment));
+    }
+
+    public static double calculateMonthlyMortgagePayment(int principal, float annualInterestRate, int loanPeriod ) {
         // calculate monthly interest rate
         float monthlyInterestRate = (annualInterestRate / PERCENT) / MONTHS_IN_YEAR;
 
         // calculate total number of payments
         int numberOfPayments = loanPeriod * MONTHS_IN_YEAR;
 
-        // mortgage calculation:
-        double monthlyPayment = principal *
+        return principal *
                 (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate), numberOfPayments)))
-                        / ((Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1));
-
-        System.out.print("Monthly Mortgage Payment: ");
-        System.out.print(NumberFormat.getCurrencyInstance().format(monthlyPayment));
+                / ((Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1));
     }
 }
