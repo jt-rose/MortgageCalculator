@@ -1,5 +1,6 @@
 package com.mortgagecalculator;
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -34,6 +35,6 @@ public class Main {
                         / ((Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1));
 
         System.out.print("Monthly Mortgage Payment: ");
-        System.out.print(monthlyPayment);
+        System.out.print(NumberFormat.getCurrencyInstance().format(monthlyPayment));
     }
 }
