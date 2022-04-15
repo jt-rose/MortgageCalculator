@@ -8,47 +8,10 @@ public class Main {
     // https://www.youtube.com/watch?v=eIrMbAQSU34
     public static void main(String[] args) {
 
-
-
-        // init scanner
-        Scanner scanner = new Scanner(System.in);
-
-        // set up default values
-        int principal;
-        float annualInterestRate;
-        byte loanPeriod;
-
-        // get principal
-        while (true) {
-            System.out.print("Principal: ");
-            principal = scanner.nextInt();
-            if (principal >= 1000 && principal <= 1_000_000) {
-                break;
-            }
-            System.out.println("Please enter a value between 1,000 and 1,000,000");
-        }
-
-
-        // get annual interest rate
-        while (true) {
-            System.out.print("Annual Interest Rate: ");
-            annualInterestRate = scanner.nextFloat();
-            if (annualInterestRate >= 1 && annualInterestRate <= 30) {
-                break;
-            }
-            System.out.println("Please enter an annual interest rate between 1 and 30");
-        }
-
-
-        // get loan period in years
-        while (true) {
-            System.out.print("Period (Years): ");
-            loanPeriod = scanner.nextByte();
-            if (loanPeriod >= 1 && loanPeriod <= 30) {
-                break;
-            }
-            System.out.println("Please enter a loan period between 1 and 30 years");
-        }
+        // get user inputs
+        int principal = (int) readInputs("Principal: ", 1000, 1_000_000);
+        float annualInterestRate = (float) readInputs("Annual Interest Rate: ", 1, 30);
+        byte loanPeriod = (byte) readInputs("Period (Years): ", 1, 30);
 
         // mortgage calculation:
         double monthlyPayment = calculateMonthlyMortgagePayment(principal, annualInterestRate, loanPeriod);
@@ -71,5 +34,18 @@ public class Main {
         return principal *
                 (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate), numberOfPayments)))
                 / ((Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1));
+    }
+
+    public static double readInputs(String prompt, double min, double max) {
+        Scanner scanner = new Scanner(System.in);
+        double userInput;
+        while (true) {
+            System.out.print(prompt);
+            userInput = scanner.nextDouble();
+            if (userInput >= min && userInput <= max) {
+                return userInput;
+            }
+            System.out.println("Please enter a value between " + min + " and " + max);
+        }
     }
 }
