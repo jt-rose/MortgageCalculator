@@ -19,6 +19,16 @@ public class Main {
                 " ", 1, 30);
         byte loanPeriod = (byte) readInputs("Period (Years): ", 1, 30);
 
+        displayMonthlyPayment(principal, annualInterestRate, loanPeriod);
+
+        System.out.println();
+
+        displayPaymentSchedule(principal, annualInterestRate, loanPeriod);
+    }
+
+    private static void displayMonthlyPayment(int principal,
+                                              float annualInterestRate,
+                                              byte loanPeriod) {
         // mortgage calculation:
         double monthlyPayment = calculateMonthlyMortgagePayment(principal,
                 annualInterestRate, loanPeriod);
@@ -31,7 +41,12 @@ public class Main {
         System.out.println("--------");
         System.out.print("Monthly Payment: " + formattedMortgagePayment);
 
-        System.out.println();
+    }
+
+    private static void displayPaymentSchedule(int principal,
+                                               float annualInterestRate,
+                                               byte loanPeriod) {
+
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("----------------");
         System.out.println("Year 1 Month 1: " +
