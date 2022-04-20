@@ -20,9 +20,6 @@ public class Main {
         byte loanPeriod = (byte) readInputs("Period (Years): ", 1, 30);
 
         displayMonthlyPayment(principal, annualInterestRate, loanPeriod);
-
-        System.out.println();
-
         displayPaymentSchedule(principal, annualInterestRate, loanPeriod);
     }
 
