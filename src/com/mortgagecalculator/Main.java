@@ -16,13 +16,17 @@ public class Main {
         var annualInterestRate = (float) UserInput.readInputs("Annual " +
                 "Interest Rate:" +
                 " ", 1, 30);
-        var loanPeriod = (byte) UserInput.readInputs("Period (Years): ", 1,
+        var loanPeriodInYears = (byte) UserInput.readInputs("Period (Years): "
+                , 1,
                 30);
 
-        Mortgage.displayMonthlyPayment(principal, annualInterestRate,
-                loanPeriod);
-        Mortgage.displayPaymentSchedule(principal, annualInterestRate,
-                loanPeriod);
+        // set up mortgage calculations
+        var mortgage = new Mortgage(principal, annualInterestRate,
+                loanPeriodInYears);
+
+        // display monthly payment and remaining balance over time
+        mortgage.displayMonthlyPayment();
+        mortgage.displayPaymentSchedule();
     }
 
 
