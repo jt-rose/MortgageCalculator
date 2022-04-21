@@ -42,9 +42,6 @@ public class Mortgage {
     }
 
     private double calculateMonthlyBalance(
-            int principal,
-            float annualInterestRate,
-            byte loanPeriod,
             short numberOfPaymentsMade) {
 
         // calculate monthly interest rate
@@ -52,7 +49,7 @@ public class Mortgage {
                 (annualInterestRate / PERCENT) / MONTHS_IN_YEAR;
 
         // calculate total number of payments
-        int numberOfPayments = loanPeriod * MONTHS_IN_YEAR;
+        int numberOfPayments = loanPeriodInYears * MONTHS_IN_YEAR;
 
         return principal * (Math.pow(1 + monthlyInterestRate,
                 numberOfPayments) - Math.pow(1 + monthlyInterestRate,
@@ -83,8 +80,7 @@ public class Mortgage {
         for (short totalMonths = 1;
              totalMonths <= loanPeriodInYears * MONTHS_IN_YEAR;
              totalMonths++) {
-            double balance = calculateMonthlyBalance(principal,
-                    annualInterestRate, loanPeriodInYears, totalMonths);
+            double balance = calculateMonthlyBalance(totalMonths);
             String currentBalance =
                     NumberFormat.getCurrencyInstance().format(balance);
             int currentYear = (totalMonths / MONTHS_IN_YEAR) + 1;
