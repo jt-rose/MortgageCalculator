@@ -14,10 +14,13 @@ public class Main {
     public static void main(String[] args) {
 
         // get user inputs
-        int principal = (int) readInputs("Principal: ", 1000, 1_000_000);
-        float annualInterestRate = (float) readInputs("Annual Interest Rate:" +
+        var principal = (int) UserInput.readInputs("Principal: ", 1000,
+                1_000_000);
+        var annualInterestRate = (float) UserInput.readInputs("Annual " +
+                "Interest Rate:" +
                 " ", 1, 30);
-        byte loanPeriod = (byte) readInputs("Period (Years): ", 1, 30);
+        var loanPeriod = (byte) UserInput.readInputs("Period (Years): ", 1,
+                30);
 
         displayMonthlyPayment(principal, annualInterestRate, loanPeriod);
         displayPaymentSchedule(principal, annualInterestRate, loanPeriod);
@@ -104,19 +107,5 @@ public class Main {
                 numberOfPayments) - Math.pow(1 + monthlyInterestRate,
                 numberOfPaymentsMade)) / (Math.pow(1 + monthlyInterestRate,
                 numberOfPayments) - 1);
-    }
-
-    public static double readInputs(String prompt, double min, double max) {
-        Scanner scanner = new Scanner(System.in);
-        double userInput;
-        while (true) {
-            System.out.print(prompt);
-            userInput = scanner.nextDouble();
-            if (userInput >= min && userInput <= max) {
-                return userInput;
-            }
-            System.out.println("Please enter a value between " + min + " and" +
-                    " " + max);
-        }
     }
 }
