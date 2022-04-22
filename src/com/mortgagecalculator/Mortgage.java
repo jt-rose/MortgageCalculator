@@ -10,7 +10,6 @@ public class Mortgage {
     final private int principal;
     final private float annualInterestRate;
     final private byte loanPeriodInYears;
-    final private double monthlyPayment;
     final private double[] monthlyBalanceOverTime;
 
 
@@ -19,7 +18,6 @@ public class Mortgage {
         this.principal = principal;
         this.annualInterestRate = annualInterestRate;
         this.loanPeriodInYears = loanPeriodInYears;
-        this.monthlyPayment = calculateMonthlyMortgagePayment();
         this.monthlyBalanceOverTime = calculateMonthlyBalanceOverTime();
     }
 
@@ -32,10 +30,6 @@ public class Mortgage {
         return loanPeriodInYears;
     }
 
-    public double getMonthlyPayment() {
-        return monthlyPayment;
-    }
-
     public double[] getMonthlyBalanceOverTime() {
         return monthlyBalanceOverTime;
     }
@@ -44,7 +38,7 @@ public class Mortgage {
         return loanPeriodInYears * MONTHS_IN_YEAR;
     }
 
-    public double calculateMonthlyMortgagePayment() {
+    public double getMonthlyPayment() {
         var numberOfPayments = getNumberOfPayments();
         // calculate monthly interest rate
         float monthlyInterestRate =
