@@ -26,6 +26,7 @@ public class MortgageReport {
 
     public void displayPaymentSchedule() {
 
+        System.out.println();
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("----------------");
         System.out.println("Year 1 Month 1: " +
