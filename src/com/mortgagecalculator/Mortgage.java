@@ -1,10 +1,9 @@
 package com.mortgagecalculator;
 
 public class Mortgage {
-
     // constants
-    final static byte MONTHS_IN_YEAR = 12;
-    final static byte PERCENT = 100;
+    final public static byte MONTHS_IN_YEAR = 12;
+    final public static byte PERCENT = 100;
 
     // mortgage properties
     final private int principal;
