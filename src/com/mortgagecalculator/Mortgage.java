@@ -10,7 +10,6 @@ public class Mortgage {
     final private int principal;
     final private float annualInterestRate;
     final private byte loanPeriodInYears;
-    final private int numberOfPayments;
     final private double monthlyPayment;
     final private double[] monthlyBalanceOverTime;
 
@@ -20,7 +19,6 @@ public class Mortgage {
         this.principal = principal;
         this.annualInterestRate = annualInterestRate;
         this.loanPeriodInYears = loanPeriodInYears;
-        this.numberOfPayments = calculateNumberOfPayments();
         this.monthlyPayment = calculateMonthlyMortgagePayment();
         this.monthlyBalanceOverTime = calculateMonthlyBalanceOverTime();
     }
@@ -38,20 +36,16 @@ public class Mortgage {
         return monthlyPayment;
     }
 
-    public int getNumberOfPayments() {
-        return numberOfPayments;
-    }
-
     public double[] getMonthlyBalanceOverTime() {
         return monthlyBalanceOverTime;
     }
 
-    // private calculations
-    private int calculateNumberOfPayments() {
+    public int getNumberOfPayments() {
         return loanPeriodInYears * MONTHS_IN_YEAR;
     }
 
     public double calculateMonthlyMortgagePayment() {
+        var numberOfPayments = getNumberOfPayments();
         // calculate monthly interest rate
         float monthlyInterestRate =
                 (annualInterestRate / PERCENT) / MONTHS_IN_YEAR;
@@ -67,6 +61,8 @@ public class Mortgage {
     public double calculateMonthlyBalance(
             short numberOfPaymentsMade) {
 
+        var numberOfPayments = getNumberOfPayments();
+
         // calculate monthly interest rate
         float monthlyInterestRate =
                 (annualInterestRate / PERCENT) / MONTHS_IN_YEAR;
@@ -78,6 +74,8 @@ public class Mortgage {
     }
 
     private double[] calculateMonthlyBalanceOverTime() {
+
+        var numberOfPayments = getNumberOfPayments();
         double[] monthlyBalanceOverTime = new double[numberOfPayments];
         for (short monthsSoFar = 1;
              monthsSoFar <= numberOfPayments;
