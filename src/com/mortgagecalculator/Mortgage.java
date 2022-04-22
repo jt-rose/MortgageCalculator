@@ -10,7 +10,6 @@ public class Mortgage {
     final private int principal;
     final private float annualInterestRate;
     final private byte loanPeriodInYears;
-    final private double[] monthlyBalanceOverTime;
 
 
     public Mortgage(int principal, float annualInterestRate,
@@ -18,7 +17,6 @@ public class Mortgage {
         this.principal = principal;
         this.annualInterestRate = annualInterestRate;
         this.loanPeriodInYears = loanPeriodInYears;
-        this.monthlyBalanceOverTime = calculateMonthlyBalanceOverTime();
     }
 
     // getters
@@ -28,10 +26,6 @@ public class Mortgage {
 
     public byte getLoanPeriodInYears() {
         return loanPeriodInYears;
-    }
-
-    public double[] getMonthlyBalanceOverTime() {
-        return monthlyBalanceOverTime;
     }
 
     public int getNumberOfPayments() {
@@ -52,7 +46,7 @@ public class Mortgage {
                         numberOfPayments) - 1));
     }
 
-    public double calculateMonthlyBalance(
+    public double getMonthlyBalance(
             short numberOfPaymentsMade) {
 
         var numberOfPayments = getNumberOfPayments();
@@ -67,14 +61,14 @@ public class Mortgage {
                 numberOfPayments) - 1);
     }
 
-    private double[] calculateMonthlyBalanceOverTime() {
+    public double[] getMonthlyBalanceOverTime() {
 
         var numberOfPayments = getNumberOfPayments();
         double[] monthlyBalanceOverTime = new double[numberOfPayments];
         for (short monthsSoFar = 1;
              monthsSoFar <= numberOfPayments;
              monthsSoFar++) {
-            double balance = calculateMonthlyBalance(monthsSoFar);
+            double balance = getMonthlyBalance(monthsSoFar);
             monthlyBalanceOverTime[monthsSoFar - 1] = balance;
         }
         return monthlyBalanceOverTime;
