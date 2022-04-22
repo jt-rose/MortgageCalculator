@@ -24,10 +24,6 @@ public class Mortgage {
         return principal;
     }
 
-    public byte getLoanPeriodInYears() {
-        return loanPeriodInYears;
-    }
-
     public int getNumberOfPayments() {
         return loanPeriodInYears * MONTHS_IN_YEAR;
     }
