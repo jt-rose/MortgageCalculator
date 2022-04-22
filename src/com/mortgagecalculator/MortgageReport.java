@@ -13,7 +13,7 @@ public class MortgageReport {
 
     public void displayMonthlyPayment() {
         // mortgage calculation
-        String formattedMortgagePayment =
+        var formattedMortgagePayment =
                 currency.format(mortgage.getMonthlyPayment());
 
         System.out.print("Monthly Mortgage Payment: ");
@@ -31,20 +31,21 @@ public class MortgageReport {
         System.out.println("Year 1 Month 1: " +
                 currency.format(mortgage.getPrincipal()) +
                 " remaining");
+
+        var monthlyBalanceOverTime = mortgage.getMonthlyBalanceOverTime();
         for (short totalMonths = 1;
              totalMonths <=
-                     mortgage.getLoanPeriodInYears() * Mortgage.MONTHS_IN_YEAR;
+                     mortgage.getNumberOfPayments();
              totalMonths++) {
-            double balance = mortgage.calculateMonthlyBalance(totalMonths);
-            String currentBalance =
-                    NumberFormat.getCurrencyInstance().format(balance);
+            double balance = monthlyBalanceOverTime[totalMonths - 1];
+            String formattedBalance = currency.format(balance);
             int currentYear = (totalMonths / Mortgage.MONTHS_IN_YEAR) + 1;
             int currentMonth = (totalMonths % Mortgage.MONTHS_IN_YEAR) + 1;
 
             System.out.println(
                     "Year " + currentYear + " Month " + currentMonth +
                             ":" +
-                            " " + currentBalance + " " +
+                            " " + formattedBalance + " " +
                             "remaining");
         }
     }
