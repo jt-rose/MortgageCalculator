@@ -25,8 +25,9 @@ public class Main {
                 loanPeriodInYears);
 
         // display monthly payment and remaining balance over time
-        mortgage.displayMonthlyPayment();
-        mortgage.displayPaymentSchedule();
+        var report = new MortgageReport(mortgage);
+        report.displayMonthlyPayment();
+        report.displayPaymentSchedule();
     }
 
 
